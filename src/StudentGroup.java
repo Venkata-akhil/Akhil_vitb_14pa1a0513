@@ -14,7 +14,7 @@ import java.util.Date;
 public class StudentGroup implements StudentArrayOperation {
 
 	private Student[] students;
-	
+	private static final Exception llegalArgumentException = null;
 	/**
 	 * DO NOT remove or change this constructor, it will be used during task check
 	 * @param length
@@ -26,38 +26,108 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudents() {
 		// Add your implementation here
-		return null;
+		return students;
 	}
 
 	@Override
 	public void setStudents(Student[] students) {
-		// Add your implementation here
+			// Add your implementation here
+			if(students==null)
+				try {
+					throw llegalArgumentException;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			else
+				this.students=students;
 	}
 
 	@Override
 	public Student getStudent(int index) {
 		// Add your implementation here
-		return null;
+		if(index<0||(index>=students.length-1))
+			try {
+				Exception IllegalArgumentException = null;
+				throw IllegalArgumentException;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return students[index];
 	}
 
 	@Override
 	public void setStudent(Student student, int index) {
 		// Add your implementation here
+			if((student==null)||(index<0||(index>=students.length-1))) {
+				try {
+					throw llegalArgumentException;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		students[index]=student;
 	}
 
 	@Override
 	public void addFirst(Student student) {
 		// Add your implementation here
+		if(student==null) {
+			try {
+				throw llegalArgumentException;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Student []stud1=new Student[students.length+1];
+		stud1[0]=student;
+		for(int i=students.length;i>=0;i--) 
+			stud1[i]=students[i-1];
+		students=stud1;
+		
 	}
 
 	@Override
 	public void addLast(Student student) {
 		// Add your implementation here
+		if(student==null)
+			try {
+				throw llegalArgumentException;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		Student []std1=new Student[students.length+1];
+		//students[students.length-1]=std1;
+		for(int i=0;i<students.length-1;i++) {
+			std1[i]=students[i];
+		}
+		students=std1;
 	}
 
 	@Override
 	public void add(Student student, int index) {
 		// Add your implementation here
+		if(student==null) {
+			try {
+				throw llegalArgumentException;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Student []std1=new Student[students.length+1];
+		int i;
+		for(i=0;i<students.length-1;i++) {
+			std1[i]=students[i];
+		}
+		std1[i]=student;
+		while(i<index) {
+			std1[i+1]=students[i];
+			i++;
+		}
+		students=std1;
 	}
 
 	@Override
@@ -94,8 +164,8 @@ public class StudentGroup implements StudentArrayOperation {
 	public void bubbleSort() {
 		// Add your implementation here
 		for(int i=0;i<students.length;i++) {
-			for(int j=0;j<students.length-1-i;j++) {
-				if(students[j]>students[j+1]){
+			for(int j=0;j<students.lemgth;j++){
+				if(students[j]>students[j+1]) {
 					int temp=students[j];
 					students[j]=students[j+1];
 					students[j+1]=temp;
